@@ -3,6 +3,7 @@ package com.bridgelabz.Test;
 import org.junit.Test;
 
 import com.bridgelabz.CabInvoiceGenerator.CabInvoiceGenerator;
+import com.bridgelabz.CabInvoiceGenerator.Ride;
 
 import junit.framework.Assert;
 
@@ -26,5 +27,15 @@ public class CabInvoiceGeneratorTest
 		int time = 1;
 		double fare = cig.calculateFare(distance, time);
 		Assert.assertEquals(5, fare, 0.0);
+	}
+	
+	@Test
+	public void givenMultipleRides_ShouldReturnTotalFare()
+	{
+		CabInvoiceGenerator cig = new CabInvoiceGenerator();
+		Ride[] rides = { new Ride(2.0, 5),
+						 new Ride(0.1, 1) };
+		double fare = cig.calculateFare(rides);
+		Assert.assertEquals(30, fare, 0.0);
 	}
 }
